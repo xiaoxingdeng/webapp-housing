@@ -1,0 +1,34 @@
+{% extends "housing/base.html" %}
+{% load static %}
+{% block content %}
+        <section class="page-section bg-light pt-5 mt-5" id="portfolio">
+            <div class="container py=5">
+                <div class="container text-center col-4">
+                    {% if not profile_item.profile_picture %}
+                        {% load static %}
+                        <img id="id_user_picture" class="img-thumbnail w-1 h-1" src="{% static 'housing/assets/2.jpg' %}">
+                    {% else %}
+                        <img id="id_user_picture" class="img-thumbnail w-1 h-1" src="{% url 'add_img' profile_item.id %}">
+                    {% endif %}
+                </div>
+            
+                <div class="container text-center col-4">
+                    {{profile_item.description}}
+                </div>
+
+                <div class="my-2">{{profile_user.first_name}} {{profile_user.last_name}}'s house List:</div>
+                <ol class="list-group list-group-numbered">
+                    {% for house in houses %}
+                        <li class="list-group-item">
+                            {{house.address}}
+                        </li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+    {% endblock %}

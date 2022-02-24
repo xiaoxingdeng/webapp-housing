@@ -1,0 +1,146 @@
+* {
+    box-sizing: border-box;
+}
+
+#id_header_div {
+    display: table;
+    width: 100%;
+    background-color: cadetblue;
+    font-size: xx-large;
+    font-weight: bold;
+    font-family: sans-serif;
+    left: 0;
+    height: 200px;
+}
+
+#id_site_name {
+    color:white;
+    text-align: left;
+    font-size: 4vw;
+    float: left;
+    width: 50%;
+    padding: 10px;
+}
+
+#id_page_name {
+    text-align: center;
+    font-size: xx-large;
+}
+
+.user-info {
+    font-family: sans-serif; 
+    font-size: xx-large;
+}
+.id_nav_stream {
+    color:white;
+    font-size: large;
+    float: left;
+    width: 50%;
+    padding: 10px;
+    text-align: right;
+    padding-top: 140px;
+}
+
+#id_login_link {
+    color:white;
+    font-size: large;
+    float: left;
+    width: 50%;
+    padding: 10px;
+    text-align: right;
+    padding-top: 150px;
+}
+
+#id_register_link {
+    font-size: large;
+    color: white;
+    float: left;
+    width: 50%;
+    padding: 10px;
+    text-align: right;
+    padding-top: 150px;
+}
+
+.message {
+    color:blue;
+    text-align: right;
+    font-weight: bold;
+    font-size: x-large;
+    font-family: sans-serif;
+    padding: 25px 50px;
+}
+
+.content {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    font-family: sans-serif;
+    font-size: x-large;
+    padding: 25px 50px;
+    text-align: center;
+}
+
+.post_div {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    text-align: left;
+    width: 90%;
+}
+
+.comment_div {
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-left: 20vw;
+    margin-right: 20vw;
+    text-align: left;
+    width: 70%;
+}
+
+.post_content {
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-left: 20vw;
+    margin-right: 20vw;
+    text-align: left;
+    width: 70%;
+}
+
+
+.time {
+    font-style: italic;
+    font-weight: lighter;
+}
+
+.error {
+    color:red;
+}
+
+th {
+    font-weight:bold;
+    text-align: left;
+}
+
+button {
+    font-size: large;
+    padding: 3px;
+}
+
+input {
+    font-size: x-large;
+}
+
+div, form {
+    padding: 4px;
+}
+
+table {
+    width:70%;
+    padding: auto;
+    margin: auto;
+    text-align: center;
+}
+
+
+

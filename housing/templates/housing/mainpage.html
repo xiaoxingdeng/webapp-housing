@@ -1,0 +1,299 @@
+{% extends "housing/base.html" %}
+{% block content %}
+        <section class="page-section bg-light" id="portfolio">
+            <div class="container">
+                <div class="text-center pt-5 my-5">
+                    <h2 class="text-uppercase">House listing</h2>
+                </div>
+                <div class="row">
+<!-- filter-->                        
+
+                    <div class="col-lg-2 col-sm-4 mb-4">
+    <!-- radio-->                  
+                        <div class="btn-group-vertical" role="group" aria-label="Button group with nested dropdown">
+                            
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Distance To CMU
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                    <a class="dropdown-item" href="#">
+                                        <label><input type="radio" name="dist" class = "distance" value = "close"> Close to Far</label>
+                                    </a>
+                                    <a class="dropdown-item" href="#">
+                                        <label><input type="radio" name="dist" class = "distance" value = "far"> Far to Close</label>
+                                    </a>
+                                </div>
+                            </div>
+
+                                
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop2" type="button" class="btn btn-secondary btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Region
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
+                                    <div class="dropdown-item">
+                                        <label><input type="radio" name="reg" class = "region" value = "oakland"> Oakland</label>
+                                    </div>
+                                    <div class="dropdown-item">
+                                        <label><input type="radio" name="reg" class = "region" value = "squirrel"> Squirrel Hill</label>
+                                    </div>
+                                    <div class="dropdown-item">
+                                        <label><input type="radio" name="reg" class = "region" value = "shadyside"> Shadyside</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop3" type="button" class="btn btn-secondary btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Room Type
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop3">
+                                    <div class="dropdown-item">
+                                        <label><input type="radio" name="room" class = "room" value = "studio"> Studio</label>
+                                    </div>
+                                    <div class="dropdown-item">
+                                        <label><input type="radio" name="room" class = "room" value = "2b1b"> 2B1B</label>
+                                    </div>
+                                    <div class="dropdown-item">
+                                        <label><input type="radio" name="room" class = "room" value = "2b2b"> 2B2B</label>
+                                    </div>
+                                    <div class="dropdown-item">
+                                        <label><input type="radio" name="room" class = "room" value = "3b1b"> 3B1B</label>
+                                    </div>
+                                    <div class="dropdown-item">
+                                        <label><input type="radio" name="room" class = "room" value = "3b2b"> 3B2B</label>
+                                    </div>
+                                    <div class="dropdown-item">
+                                        <label><input type="radio" name="room" class = "room" value = "3b3b"> 3B3B</label>
+                                    </div>
+                                    <div class="dropdown-item">
+                                        <label><input type="radio" name="room" class = "room" value = "others"> Others</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop4" type="button" class="btn btn-secondary btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Building Type
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop4">
+                                    <div class="dropdown-item">
+                                        <label><input type="radio" name="build" class = "building" value = "house"> House</label>
+                                    </div>
+                                    <div class="dropdown-item">
+                                        <label><input type="radio" name="build" class = "building" value = "apartment"> Apartment</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="btn-group" role="group">
+                              <button id="btnGroupDrop5" type="button" class="btn btn-secondary btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Price
+                              </button>
+                              <div class="dropdown-menu" aria-labelledby="btnGroupDrop5">
+                                    <div class="dropdown-item">
+                                        <label><input type="radio" name="prize" class = "price" value = "0"> $0-$500</label>
+                                    </div>
+                                    <div class="dropdown-item">
+                                        <label><input type="radio" name="prize" class = "price" value = "500"> $500-$1000</label>
+                                    </div>
+                                    <div class="dropdown-item">
+                                        <label><input type="radio" name="prize" class = "price" value = "1000"> $1000-$1500</label>
+                                    </div>
+                                    <div class="dropdown-item">
+                                        <label><input type="radio" name="prize" class = "price" value = "1500"> $1500-$2000</label>
+                                    </div>
+                                    <div class="dropdown-item">
+                                        <label><input type="radio" name="prize" class = "price" value = "2000"> > $2000 </label>
+                                    </div>
+                              </div>
+                            </div>
+
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop5" type="button" class="btn btn-secondary btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Area
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop5">
+                                      <div class="dropdown-item">
+                                          <label><input type="radio" name="size" class = "size" value = "0"> 0-500 sqft</label>
+                                      </div>
+                                      <div class="dropdown-item">
+                                          <label><input type="radio" name="size" class = "size" value = "500"> 500-1000 sqft</label>
+                                      </div>
+                                      <div class="dropdown-item">
+                                        <label><input type="radio" name="size" class = "size" value = "1000"> 1000-1500 sqft</label>
+                                      </div>
+                                      <div class="dropdown-item">
+                                        <label><input type="radio" name="size" class = "size" value = "1500"> 1500-2000 sqft</label>
+                                      </div>
+                                      <div class="dropdown-item">
+                                        <label><input type="radio" name="size" class = "size" value = "2000"> > 2000 sqft</label>
+                                      </div>
+                                </div>
+                            </div>
+
+                            <div class="btn-group" role="group">
+                                <button id="reset" onclick="reset()" type="button" class="btn btn-secondary btn-danger">
+                                  All
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-10 col-sm-8 mb-4" style="padding-bottom: 25%;">
+                        <div id="googleMap" style="width:80%;height:300px;margin:auto;"></div>
+
+                        <div class="row" id = "picture_list">
+
+                        </div>
+                    </div>
+                    <div id="page_line"></div>             
+        </section>
+        <script
+        <iframe class="col-10" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGzEQiUuCWn_fuBlrvG5POLcIhOHmBs8c&sensor=false" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </script>
+        <script>
+            //google map api
+            var myCenter=new google.maps.LatLng(40.4433,-79.9436);
+            var mapProp = {
+            center:myCenter,
+            zoom:12,
+            mapTypeId:google.maps.MapTypeId.ROADMAP
+            };
+            console.log(1);
+            var markers = [];
+            var infowindows = [];
+            var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+            
+            function setMrker(lat,long,address,id){
+                var markerCenter=new google.maps.LatLng(lat,long);
+                var marker=new google.maps.Marker({
+                position:markerCenter,
+                });
+                var infowindow = new google.maps.InfoWindow({
+                content:'<a class="portfolio-link" href="/housing/house_infor/' + id + '">'+address
+                });
+                markers.push(marker);
+                infowindows.push(infowindow);
+            }
+            function setMapOnAll(mapexist) {
+                for (let i = 0; i < markers.length; i++) {
+                    markers[i].setMap(mapexist);
+                    infowindows[i].open(mapexist,markers[i]);
+                }
+            }
+
+            
+            var houseNumInPage = 15
+            function reset() {
+                $(":radio").prop('checked', false).parent().removeClass('active');
+            }
+            window.onload = read;
+            function read() {
+                Dict = {};
+                var distance = document.querySelector('.distance:checked')
+                if (distance != null)
+                    Dict['Distance'] = distance.value
+                var region = document.querySelector('.region:checked')
+                if (region != null)
+                    Dict['Region'] = region.value
+                var room = document.querySelector('.room:checked')
+                if (room != null)
+                    Dict['Room'] = room.value
+                var building = document.querySelector('.building:checked')
+                if (building != null)
+                    Dict['Building'] = building.value
+                var price = document.querySelector('.price:checked')
+                if (price != null)
+                    Dict['Price'] = price.value
+                var size = document.querySelector('.size:checked')
+                if (size != null)
+                    Dict['Size'] = size.value
+
+                var token = '{{csrf_token}}';
+                $.ajax({type: "POST",
+                        headers: { "X-CSRFToken": token},
+                        url: "/housing/filter",
+                        data: Dict,
+                        success: updatePicture,
+                        error: updateError
+                });
+            };
+            function updatePicture(items) {
+                setMapOnAll(null)
+                markers=[]
+                infowindows=[]
+                $("#page_line").empty()
+                    $("#page_line").append(
+                        '<div class="pagination">'+
+                        '<span class="step-links">'+
+                            '{% if hprofiles_pages.has_previous %}'+
+                                '<a href="?page=1">&laquo; first</a>'+
+                                '<a href="?page={{ hprofiles_pages.previous_page_number }}"> previous </a>'+
+                            '{% endif %}'+
+                            '<span class="current">'+
+                            '    Page {{ hprofiles_pages.number }} of {{ hprofiles_pages.paginator.num_pages }}.'+
+                            '</span>'+
+
+                            '{% if hprofiles_pages.has_next %}'+
+                            '    <a href="?page={{ hprofiles_pages.next_page_number }}"> next </a>'+
+                            '    <a href="?page={{ hprofiles_pages.paginator.num_pages }}"> last &raquo;</a>'+
+                            '{% endif %}'+
+                        '</span></div>'
+                        )
+                // Removes the old housing information
+                $("#picture_list").empty()
+                var idx = 0;
+                var page = '{{hprofiles_pages.number}}';
+                // Adds each new todolist item to the list (only if it's not already here)
+                $(items).each(function() {
+                    idx += 1;
+                    if (idx <= page*houseNumInPage && idx > ( page-1)*houseNumInPage) {
+                        $("#picture_list").append(
+                            '<div class="col-lg-3 col-sm-4 mb-4">' +
+                                '<div>' +
+                                    '<a class="portfolio-link" href="/housing/house_infor/' + this.id + '">' +
+                                        '<div class="portfolio-hover">' +
+                                            '<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>' +
+                                        '</div>' +
+                                        '<img style = "margin-left: 1vw" height="100" width = "180" src="/housing/photo/' + this.id + '" alt="..." />' +
+                                    '</a>' +
+                                    '<div class="portfolio-caption">' +
+                                        '<div class="text-center">$ ' + this.price + ' /mo ' + this.room_type + '</div>' +
+                                        '<div class="text-center">' + this.address + '</div>' +
+                                    '</div>' +
+                                '</div>' +
+                            '</div>'
+                        )}
+                        setMrker(this.latitude,this.longtitude,this.address,this.id)
+                    }
+                )
+                setMapOnAll(map)
+            }
+            function updateError(xhr) {
+                if (xhr.status == 0) {
+                    displayError("Cannot connect to server")
+                    return
+                }
+                if (!xhr.getResponseHeader('content-type') == 'application/json') {
+                    displayError("Received status=" + xhr.status)
+                    return
+                }
+                let response = JSON.parse(xhr.responseText)
+                if (response.hasOwnProperty('error')) {
+                    displayError(response.error)
+                    return
+                }
+                displayError(response)
+            }
+
+            function displayError(message) {
+                $("#error").html(message);
+            }
+
+
+            window.setInterval(read, 2000)
+        </script>   
+    </body>
+</html>
+{% endblock %}

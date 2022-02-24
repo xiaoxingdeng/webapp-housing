@@ -1,0 +1,254 @@
+{% extends "housing/base.html" %}
+{% block content %}
+  <section id="contact">
+      <div class="container-lg mt-5">
+        <div class="text-center">
+          <h2>Want to release the house?</h2>
+          <p class="lead">Easily do on this page</p>
+        </div>
+        <div class="row justify-content-center my-5">
+          <div class="col-8 col-lg-6">
+
+            <form method="post" action="{% url 'add_item' %}" enctype="multipart/form-data">
+
+              <label for="formFile" class="form-label">Outlook picture:</label>
+              <div class="mb-3">
+                  <input class="form-control" type="file"  id="{{ form.picture.id_for_label }}" name="{{ form.picture.html_name}}" value="{{ form.picture.value|default_if_none:""}}">
+              </div>
+              <div class="errorlist">
+                {% for error in form.picture.errors %} {{error}} {% endfor %}
+              </div>
+
+              <label for="formFile" class="form-label">Inner picture:</label>
+              <div class="mb-3">
+                  <input class="form-control" type="file" multiple name="images" >
+              </div>
+
+              <div class="my-4 form-floating">
+                <textarea class="form-control"  id="{{ form.description.id_for_label }}" name="{{ form.description.html_name}}" value="{{ form.description.value|default_if_none:""}}" style="height: 140px" placeholder="query"></textarea>
+                <p class="errorlist">
+                  {% for error in form.description.errors %} {{error}} {% endfor %}
+                </p>
+            </div>
+
+              <label class="form-label">Address:</label>
+                <div id="app" class="container">
+                  <div class="form-group">
+                        <input type="text" class="form-control" ref="site" v-model="site" id="{{ form.address.id_for_label }}" name="{{ form.address.html_name}}" value="{{ form.address.value|default_if_none:""}}">
+                  </div>
+
+                  <div class="row">
+                    <div class="col google-map">
+                        <h5>Google Map：</h5>
+                      <div id="map" class="embed-responsive embed-responsive-16by9"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <input type="text" style="display:none" id="id_latittude" name="{{ form.latitude.html_name}}"  class="form-control" value=""/>
+                <input type="text" style="display:none" id="id_longitude" name="{{ form.longtitude.html_name}}"  class="form-control" value=""/>
+                
+                <p class="errorlist">
+                  {% for error in form.address.errors %} {{error}} {% endfor %}
+                </p>
+
+              <label class="form-label">Area Size (sqft):</label>
+              <div class="mb-4 input-group">
+                <span class="input-group-text">
+                  <i class="bi bi-house-fill text-secondary"></i>
+                </span>
+                <input type="text" id="{{ form.area.id_for_label }}" name="{{ form.area.html_name}}" value="{{ form.area.value|default_if_none:""}}" class="form-control" placeholder="e.g. 790" />
+                <!-- tooltip -->
+                <span class="input-group-text">
+                  <span class="tt" data-bs-placement="bottom" title="Enter the size of housing">
+                    <i class="bi bi-question-circle text-muted"></i>
+                  </span>
+                </span>
+                <p class="errorlist">
+                  {% for error in form.area.errors %} {{error}} {% endfor %}
+                </p>
+              </div>
+            
+            <label class="form-label">Distance (km):</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text">
+                <i class="bi bi-cursor-fill text-secondary"></i>
+              </span>
+              <input type="text" id="id_distance" name="{{form.distance2cmu.html_name}}" value="" class="form-control" placeholder="e.g. 1.31" />
+              <!-- tooltip -->
+              <span class="input-group-text">
+                <span class="tt" data-bs-placement="bottom" title="Enter the distance to CMU">
+                  <i class="bi bi-question-circle text-muted"></i>
+                </span>
+              </span>
+              <p class="errorlist">
+                {% for error in form.distance2cmu.errors %} {{error}} {% endfor %}
+              </p>
+            </div>
+
+            <label class="form-label">Price ($/month):</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text">
+                <i class="bi bi-currency-dollar text-secondary"></i>
+              </span>
+              <input type="text" id="{{ form.price.id_for_label }}" name="{{ form.price.html_name}}" value="{{ form.price.value|default_if_none:""}}" class="form-control" placeholder="e.g. 1400" />
+              <!-- tooltip -->
+              <span class="input-group-text">
+                <span class="tt" data-bs-placement="bottom" title="Enter the rental price per month.">
+                  <i class="bi bi-question-circle text-muted"></i>
+                </span>
+              </span>
+              <p class="errorlist">
+                {% for error in form.price.errors %} {{error}} {% endfor %}
+              </p>
+            </div>
+            
+            <label for="formFile" class="form-label">Room type:</label>
+            <div class="mb-4 input-group">
+              <span class="input-group-text">
+                <i class="bi bi-stack text-secondary"></i>
+              </span>
+              <select class="form-select" id="subject" id="{{ form.room_type.id_for_label }}" name="{{ form.room_type.html_name}}" value="{{ form.room_type.value|default_if_none:""}}">
+                <option value="studio" selected>Studio</option>
+                <option value="2b1b">2B1B</option>
+                <option value="2b2b">2B2B</option>
+                <option value="3b1b">3B1B</option>
+                <option value="3b2b">3B2B</option>
+                <option value="3b3b">3B3B</option>
+                <option value="others">Others</option>
+              </select>
+                <!-- tooltip -->
+                <span class="input-group-text">
+                    <span class="tt" data-bs-placement="bottom" title="Select the type of Room">
+                        <i class="bi bi-question-circle text-muted"></i>
+                    </span>
+                </span>
+                <p class="errorlist">
+                  {% for error in form.room_type.errors %} {{error}} {% endfor %}
+                </p>
+            </div>
+
+            <label for="formFile" class="form-label">Building type:</label>
+            <div class="mb-4 input-group">
+              <span class="input-group-text">
+                <i class="bi bi-building text-secondary"></i>
+              </span>
+              <select class="form-select" id="subject" id="{{ form.house_type.id_for_label }}" name="{{ form.house_type.html_name}}" value="{{ form.house_type.value|default_if_none:""}}">
+                <option value="house" selected>House</option>
+                <option value="apartment">Apartment</option>
+              </select>
+                <!-- tooltip -->
+                <span class="input-group-text">
+                    <span class="tt" data-bs-placement="bottom" title="Select the type of housing">
+                        <i class="bi bi-question-circle text-muted"></i>
+                    </span>
+                </span>
+                <p class="errorlist">
+                  {% for error in form.house_type.errors %} {{error}} {% endfor %}
+                </p>
+            </div>
+
+            <label for="formFile" class="form-label">Region:</label>
+            <div class="mb-4 input-group">
+              <span class="input-group-text">
+                <i class="bi bi-geo-fill text-secondary"></i>
+              </span>
+              <select class="form-select" id="subject" id="{{ form.region.id_for_label }}" name="{{ form.region.html_name}}" value="{{ form.region.value|default_if_none:""}}">
+                <option value="oakland" selected>Oakland</option>
+                <option value="shadyside">Shadyside</option>
+                <option value="squirrel">Squirrel Hill</option>
+              </select>
+                <!-- tooltip -->
+                <span class="input-group-text">
+                    <span class="tt" data-bs-placement="bottom" title="Select the region of housing">
+                        <i class="bi bi-question-circle text-muted"></i>
+                    </span>
+                </span>
+                <p class="errorlist">
+                  {% for error in form.region.errors %} {{error}} {% endfor %}
+                </p>
+            </div>
+            <div class="mb-4 text-center">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            {% csrf_token %}
+          </form>
+        </div>
+      </div>
+    </div>
+    <div>{% for error in form.non_field_errors%}
+      <p class="errorlist">
+          {{ error }}
+      </p>
+        {% endfor %}
+    </div>
+    
+</section>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script>
+  const tooltips = document.querySelectorAll('.tt')
+  tooltips.forEach(t => {
+    new bootstrap.Tooltip(t)
+  })
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGzEQiUuCWn_fuBlrvG5POLcIhOHmBs8c&libraries=places,geometry&&language='en'"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+    <script>
+      CMU=new google.maps.LatLng(40.4433,-79.9436);
+      const googleMap = new Vue({
+        el: '#app',
+        data: {
+          map: null,
+          autocomplete: null,
+          site: '', 
+          place: null 
+        },
+        methods: {
+          // init google map
+          initMap() {
+            let location = {
+              lat: 40.4433,
+              lng: -79.9436
+            };
+            this.map = new google.maps.Map(document.getElementById('map'), {
+              center: location,
+              zoom: 16
+            });
+          },
+          siteAuto() {
+            let options = {
+              componentRestrictions: { country: 'usa' }
+            };
+            this.autocomplete = new google.maps.places.Autocomplete(this.$refs.site, options);
+            this.autocomplete.addListener('place_changed', () => {
+              this.place = this.autocomplete.getPlace();
+              if(this.place.geometry) {
+                let searchCenter = this.place.geometry.location;
+                var distance = google.maps.geometry.spherical.computeDistanceBetween(CMU, searchCenter);
+                distance=distance/1000       
+                document.getElementById("id_latittude").value = searchCenter.lat()
+                document.getElementById("id_longitude").value = searchCenter.lng()
+                document.getElementById("id_distance").value = distance.toFixed(3)
+                this.map.panTo(searchCenter); 
+                let marker = new google.maps.Marker({
+                  position: searchCenter,
+                  map: this.map
+                });
+                let infowindow = new google.maps.InfoWindow({
+                  content: this.place.formatted_address
+                });
+                infowindow.open(this.map, marker);
+              }
+            });
+          }
+        },
+        mounted() {
+          window.addEventListener('load', () => {
+            this.initMap();
+            this.siteAuto();
+          });
+        }
+      })
+    </script>
+{% endblock %}

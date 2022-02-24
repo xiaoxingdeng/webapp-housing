@@ -1,0 +1,58 @@
+{% extends "housing/base.html" %}
+{% load static %}
+{% block content %}
+        <section class="page-section bg-light pt-5 mt-5" id="portfolio">
+            <div class="container py=5">
+                <div class="container text-center col-4">
+                    {% if not profile_item.profile_picture %}
+                        {% load static %}
+                        <img id="id_user_picture" class="img-thumbnail w-1 h-1" src="{% static 'housing/assets/2.jpg' %}">
+                    {% else %}
+                        <img id="id_user_picture" class="img w-100 h-100" src="{% url 'add_img' profile_item.id %}">
+                    {% endif %}
+                </div>
+            
+                <div class="container text-center col-4">
+                    <form method="post" action="{% url 'profile' %}" enctype="multipart/form-data">
+                        <table class="table">
+                            {{form}}
+                        </table>
+                        {% csrf_token %}
+                        <button class="btn btn-danger"id="id_update_profile_button" type="submit">Submit</button>
+                    </form>
+                    {% if error %}
+                        <div class="error">
+                            {{error}}
+                        </div>
+                    {% endif %}
+                </div>
+
+
+                <div class="my-2">My house List:</div>
+                <ol class="list-group list-group-numbered">
+                    {% for house in houses %}
+                        <li class="list-group-item">
+                            <a href="{% url 'delete_item' house.id %}">
+                                <button type="submit" class="btn btn-primary">delete</button>
+                            </a>
+                            {{house.address}}
+                        </li>
+                    {% endfor %}
+                </ol>
+                <form method="post" action="{% url 'add_item' %}">
+                    <div class="container text-center col-4">
+                        <p>
+                            <button style = "margin-top: 10%;" class="btn btn-danger" id="id_release_house_button" >Click here to release House</button>
+                        </p>
+                    </div>
+                    {% csrf_token %}
+                </form>
+            
+                
+            </div>
+        </section>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+    {% endblock %}
